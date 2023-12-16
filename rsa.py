@@ -19,7 +19,6 @@ def rsa_encrypt(n, p, M, e):
     if bezout(n, p)[0] != 1:
         raise Exception("n et p ne sont pas premier entre eux")
     N = n*p
-    phi_N = phi(N)
     M_prime = exponentiation_modulaire(M, e, N)
     return M_prime
 
@@ -43,7 +42,7 @@ def rsa_decrypt(n, p, M_prime, e):
     N = n*p
     phi_N = phi(N)
     bezout_coef_v = bezout(phi_N, e)[2]
-    d = bezout_coef_v % phi_N
+    d = bezout_coef_v % phi_N # Si le coef V est négatif, alors on prend le reste positif de celui-ci 
     M = exponentiation_modulaire(M_prime, d, N)
     return M
     

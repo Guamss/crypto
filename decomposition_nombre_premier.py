@@ -40,6 +40,3 @@ def phi(n:int):
         actual_nbr = key**decomposition[key]-key**(decomposition[key]-1)
         result = result*actual_nbr
     return result
-
-print(phi(1500))
-print(phi(phi(1500)))

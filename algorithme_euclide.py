@@ -1,6 +1,13 @@
-import decomposition_nombre_premier
-
 def bezout(a, b):
+    """Détermine les coefficients de bezout avec le PGCD sous forme (PGCD, U, V)
+
+    Args:
+        a (int): Entier
+        b (int): Entier
+
+    Returns:
+        (tuple): les coefs de bezout et le PGCD sous forme (PGCD, U, V)
+    """
     xa, ya, xb, yb = 1, 0, 0, 1
     while b != 0:
         q=a//b
@@ -9,11 +16,6 @@ def bezout(a, b):
         return -a, -xa, -ya
     return a, xa, ya
 
-# print(bezout(242, 51))
-# V = 19 => (51*19)%242 = 1 => 19 = d car inverse de e
-# (eV)%242 = 1 => (ed)%242 = 1
-# print((51*19)%242)
-
 def base10_to_bin(x):
     x = list(bin(x))[2:]
     for i in range(len(x)):
@@ -21,6 +23,16 @@ def base10_to_bin(x):
     return x[::-1]
 
 def exponentiation_modulaire(x, p, Zn):
+    """Détermine le reste de la division euclidienne de x^p par Zn
+
+    Args:
+        x (int): Un entier
+        p (int): L'entier à la puissance de x entier
+        Zn (int): Modulo de l'opération
+
+    Returns:
+        (int): Reste de la division euclidienne
+    """
     x = x % Zn
     p = base10_to_bin(p)
     result = []

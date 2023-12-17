@@ -1,4 +1,4 @@
-def decomposition_primaire(n:int):
+def decomposition_primaire(n :int):
     """
     Fonction renvoyant un dictionnaire de la décomposition primaire de n 
     sous forme de {2 : 3, 5 : 3} pour 2³ x 5³
@@ -19,7 +19,23 @@ def decomposition_primaire(n:int):
             nbr_premiers[i] = puissance
     return nbr_premiers or {n : 1}
 
-def phi(n:int):
+def PGCD(a :int, b :int):
+    """Détermine le PGCD de deux entier a et b
+
+    Args:
+        a (int): Le dividende dans l'algorithme d'Euclide
+        b (int): Le diviseur dans l'algorithme d'Euclide
+
+    Returns:
+        (int): Le PGCD de a et b
+    """
+    r = 1
+    while r != 0:
+        r = a%b
+        b, a = r, b
+    return a
+
+def phi(n :int):
     """Applique l'indicatrice d'Euler à n
 
     Args:

@@ -1,7 +1,7 @@
 from decomposition_nombre_premier import *
 from algorithme_euclide import *
 
-def rsa_encrypt(n, p, M, e):
+def rsa_encrypt(n :int, p :int, M :int, e :int):
     """Crypte un message encrypté avec le RSA
 
     Args:
@@ -16,13 +16,13 @@ def rsa_encrypt(n, p, M, e):
     Returns:
         (int): Message encrypté
     """
-    if bezout(n, p)[0] != 1:
+    if PGCD(n, p) != 1:
         raise Exception("n et p ne sont pas premier entre eux")
     N = n*p
     M_prime = exponentiation_modulaire(M, e, N)
     return M_prime
 
-def rsa_decrypt(n, p, M_prime, e):
+def rsa_decrypt(n :int, p :int, M_prime :int, e :int):
     """Déchiffre un message encrypté avec le RSA
 
     Args:
@@ -37,11 +37,11 @@ def rsa_decrypt(n, p, M_prime, e):
     Returns:
         (int): Message décrypté
     """
-    if bezout(n, p)[0] != 1:
+    if PGCD(n, p) != 1:
         raise Exception("n et p ne sont pas premier entre eux")
     N = n*p
     phi_N = phi(N)
-    bezout_coef_v = bezout(phi_N, e)[2]
+    bezout_coef_v = bezout(phi_N, e) # V dans le cas du RSA est d
     d = bezout_coef_v % phi_N # Si le coef V est négatif, alors on prend le reste positif de celui-ci 
     M = exponentiation_modulaire(M_prime, d, N)
     return M
